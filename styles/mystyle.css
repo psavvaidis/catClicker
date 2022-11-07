@@ -6,7 +6,13 @@ body {
     align-items: center;
 }
 
-.container{
+.sidebar{
+    position: fixed;
+    background-color: darkcyan;
+    height: 100vh;
+}
+
+.content{
     display: flex;
 
 }
@@ -17,9 +23,6 @@ body {
     align-items: center;
     padding:10px;
     margin:10px;
-    border:1px solid #dfdfdf;
-    border-radius: 5%;
-    background-color: #eeeeee;
 }
 
 .cat-card_image{
