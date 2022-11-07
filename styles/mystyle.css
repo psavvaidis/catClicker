@@ -8,23 +8,26 @@ body {
 
 .container{
     display: flex;
-    flex-direction: column;
-    align-items: center;
+
 }
 
-.container img{
+.cat-card{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding:10px;
+    margin:10px;
+    border:1px solid #dfdfdf;
+    border-radius: 5%;
+    background-color: #eeeeee;
+}
+
+.cat-card_image{
     height: 300px;
     margin-top: 20px;
 }
 
-.counter{
+.cat-card_conter-text_counter{
     font-weight: bold;
     color: blueviolet;
-}
-
-.countbtn{
-    border: none;
-    background-color: rgb(110, 190, 30);
-    padding:1em;
-    border-radius: 5%;
 }
