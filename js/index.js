@@ -58,6 +58,19 @@ fn_make_cat_card = (cat) => {
     return card
 }
 
+fn_load_cat = (cat, target) => {
+    $(target).html(fn_make_cat_card(cat))
+}
+
+fn_load_cat_list = (cats) => {
+    var list = document.createElement("ul");
+    $(list).addClass("cat-list");
+    cats.forEach((cat)=> $(list).append("<li><a class=\"cat-list_item\" id=\""+ cat.name + "\">" + cat.name + "</a></li>"));
+    return list;
+}
+
 $(document).ready(()=>{
-    cats.forEach((x)=> $('.content').append(fn_make_cat_card(x)));
+    $(".sidebar").html(fn_load_cat_list(cats));
+
+    // cats.forEach((x)=> $('.content').append(fn_make_cat_card(x)));
 })

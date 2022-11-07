@@ -10,6 +10,17 @@ body {
     position: fixed;
     background-color: darkcyan;
     height: 100vh;
+    padding-top: 100px;
+}
+
+.sidebar ul li {
+    list-style: none;
+}
+
+.sidebar ul li a{
+    color: white;
+    text-decoration: none;
+    cursor: pointer;
 }
 
 .content{
