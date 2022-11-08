@@ -59,7 +59,7 @@ fn_make_cat_card = (cat) => {
 }
 
 fn_load_cat = (cat, target) => {
-    $(target).html(fn_make_cat_card(cat))
+    $(target).html(fn_make_cat_card(cat));
 }
 
 fn_load_cat_list = (cats) => {
@@ -69,8 +69,24 @@ fn_load_cat_list = (cats) => {
     return list;
 }
 
+fn_add_cat_list_event_listeners = (catListitems) => {
+
+    catListitems.each(item => {
+        $(catListitems[item]).click((event)=> {
+            // console.log(cats.filter(cat => cat.name == $(event.target).attr("id"))[0])
+            fn_load_cat(cats.filter(cat => cat.name == $(event.target).attr("id"))[0], $(".content"));
+        })
+    })
+    
+}
+
+
+
 $(document).ready(()=>{
+    // Render cat list to the sidebar
     $(".sidebar").html(fn_load_cat_list(cats));
 
+    // add click listeners to sidebar cat names to show each cat
+    fn_add_cat_list_event_listeners($(".cat-list").find("li"));
     // cats.forEach((x)=> $('.content').append(fn_make_cat_card(x)));
 })
