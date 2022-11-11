@@ -1,4 +1,4 @@
-export const    increment=(elem, current)=>{
+export const increment=(elem, current)=>{
     elem.html(current + 1);
     return current + 1
 }
@@ -29,6 +29,8 @@ export const make_cat_card = (cat) => {
     $(card).append(name_text, image, counter_text);
     return card
 }
+
+
 
 export const load_cat = (cat, target) => {
     $(target).html(make_cat_card(cat));
