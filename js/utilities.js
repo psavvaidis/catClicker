@@ -2,8 +2,7 @@ export const    increment=(elem, current)=>{
     elem.html(current + 1);
     return current + 1
 }
-export const
-btn_click=(event)=>{
+export const btn_click=(event)=>{
     var counter = $(event.target).siblings('.cat-card_counter-text').children('span');
     var currentCount = parseInt($(counter).html());
     event.data.cat.clickCount = increment(counter, currentCount).toString();
@@ -40,6 +39,12 @@ export const load_cat_list = (cats) => {
     $(list).addClass("cat-list");
     cats.forEach((cat)=> $(list).append("<li><a class=\"cat-list_item\" id=\""+ cat.name + "\">" + cat.name + "</a></li>"));
     return list;
+}
+
+export const save_locally = (cats) => {
+    if(!localStorage.cats){
+        localStorage.cats = JSON.stringify(cats);
+    }
 }
 
 export const add_cat_list_event_listeners = (cats, catListitems) => {
