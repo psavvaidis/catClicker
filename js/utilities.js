@@ -28,7 +28,8 @@ export const make_cat_card = (cat) => {
 }
 
 export const load_cat = (cat, target) => {
-    $(target).html(make_cat_card(cat));
+    $('.cat-card').remove()
+    $(make_cat_card(cat)).insertBefore('.admin');
 }
 
 export const load_cat_list = (cats) => {
@@ -47,6 +48,10 @@ export const add_cat_list_event_listeners = (cats, catListitems, action) => {
     catListitems.each(item => {
         $(catListitems[item]).click((event)=> {action(event.target)})
     })
+}
+
+export const render_admin_page = (cat) => {
+    
 }
 
 export default {}
