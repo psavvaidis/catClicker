@@ -45,3 +45,29 @@ body {
     font-weight: bold;
     color: blueviolet;
 }
+
+.admin{
+    display: block;
+    padding: 20px;
+    margin-top: 20px;
+}
+
+.admin form{
+    display: flex;
+    flex-direction: column;
+    visibility: hidden;
+}
+.admin form input[type="text"]{
+    margin-bottom: 10px;
+}
+
+.form-btns{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+}
+
+.form-btns input[type="button"]{
+    width: 100%;
+}
+
