@@ -1,7 +1,7 @@
 import { default as cats } from './data.js';
 import * as utils from './utilities.js';
 
-var model = {
+const model = {
     init: (cats)=>{
         utils.save_locally(cats)
     },
@@ -9,29 +9,16 @@ var model = {
         return catlist.filter((el)=> el.name == cat)
     },
     get_all: (catlist=JSON.parse(localStorage.cats))=>{return catlist},
-    setCount: (count, cat, catlist = JSON.parse(localStorage.cats))=>{
-        catlist.forEach(element => {
-            if(element == cat){
-                element.clickCount = count;
-            }
-        });
+    setLink: (link, cat, catlist = JSON.parse(localStorage.cats))=>{
+        model.get(cat,catlist)[0].src = link;
         utils.save_locally(catlist);
     },
     setName: (name, cat, catlist = JSON.parse(localStorage.cats))=>{
-        catlist.forEach(element => {
-            if(element == cat){
-                element.clickCount = count;
-            }
-        });
+        model.get(cat,catlist)[0].name = name;
         utils.save_locally(catlist);
     },
     setCount: (count, cat, catlist = JSON.parse(localStorage.cats))=>{
-        // model.get(cat.name,catlist)
-        catlist.forEach(element => {
-            if(element == cat){
-                element.clickCount = count;
-            }
-        });
+        model.get(cat,catlist)[0].clickCount = count;
         utils.save_locally(catlist);
     }
 }
@@ -65,7 +52,8 @@ var octopus = {
     incrementCatCount: (event)=>{
         var counter = $(event.target).siblings('.cat-card_counter-text').children('span');
         var currentCount = parseInt($(counter).html());
-        event.data.cat.clickCount = utils.increment(counter, currentCount).toString();
+        counter = utils.increment(counter, currentCount).toString();
+        model.setCount(counter, event.data.cat.name)
     }
 }
 
