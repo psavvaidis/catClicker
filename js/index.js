@@ -33,9 +33,34 @@ var sidebar_view = {
 }
 
 var card_view = {
-    init: ()=> {},
+    init: ()=> {
+        card_view.hideAdminBtn();
+    },
     update: (target)=> {
-        utils.load_cat(model.get($(target).attr("id"))[0], $('.content'));
+        var currentCat = octopus.get_cat($(target).attr("id"))[0];
+        utils.load_cat(currentCat, $('.content'));
+        card_view.showAdminBtn();
+    },
+    showAdminBtn: () => {
+        if($('.admin-btn').hasClass('hide')){
+            $('.admin-btn').removeClass('hide');
+        }
+        $('.admin-btn').addClass('show');
+    },
+    hideAdminBtn: () => {
+        if($('.admin-btn').hasClass('show')){
+            $('.admin-btn').removeClass('show');
+        }
+        $('.admin-btn').addClass('hide');
+    }
+}
+
+var admin_view = {
+    init: () => {
+        $('.admin-btn').click(admin_view.toggle)
+    },
+    toggle: (event) => {
+        $('form#admin-form').toggleClass('visible');
     }
 }
 
@@ -44,8 +69,10 @@ var octopus = {
         model.init(cats);
         sidebar_view.init();
         card_view.init();
+        admin_view.init();
     },
     load_list: ()=>{ return model.get_all()},
+    get_cat: (cat)=>{ return model.get(cat)},
     updateCard: (target)=>{
         card_view.update(target);
     },
@@ -71,4 +98,4 @@ $(document).ready(()=>{
     octopus.init(cats);
 })
 
-export {octopus};
+export {octopus, admin_view};
