@@ -107,9 +107,9 @@ var octopus = {
         model.setCount(counter, event.data.cat.name)
     },
     updateCat: (mycat)=>{
-        model.setName(mycat.name)
-        model.setLink(mycat.src)
-        model.setCount(mycat.clickCount)
+        model.setName(mycat.name, mycat.name)
+        model.setLink(mycat.src, mycat.name)
+        model.setCount(mycat.clickCount, mycat.name)
         console.log("cat updated")
     }
     
