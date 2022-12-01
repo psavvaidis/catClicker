@@ -43,21 +43,22 @@ var card_view = {
         card_view.showAdminBtn();
     },
     showAdminBtn: () => {
-        if ($('.admin-btn').hasClass('hide')) {
-            $('.admin-btn').removeClass('hide');
-        }
-        $('.admin-btn').addClass('show');
+        utils.show('.admin-btn')
     },
     hideAdminBtn: () => {
-        if ($('.admin-btn').hasClass('show')) {
-            $('.admin-btn').removeClass('show');
-        }
-        $('.admin-btn').addClass('hide');
+        utils.hide('.admin-btn')
+    },
+    hideAdmin: ()=>{
+        utils.hide('form#admin-form')
+    },
+    showAdmin: ()=>{
+        utils.show('form#admin-form')
     }
 }
 
 var admin_view = {
     init: () => {
+        utils.hide('form#admin-form')
         $('.admin-btn').click(admin_view.toggle)
     },
     initForm: (cat) => {
@@ -65,13 +66,24 @@ var admin_view = {
         $('#catName').val(cat.name)
         $('#catImage').val(cat.src)
         $('#catCount').val(cat.clickCount)
+        $('#cancelBtn').click(()=>{octopus.hideAdmin()})
+        $('#saveBtn').click(admin_view.updateCat)
     },
     updateCat: () => {
-        //send data to octopus
+        let cat = {
+            name: $('#catName').val(),
+            src: $('#catImage').val(),
+            clickCount: $('#catCount').val()
+        }
+        octopus.updateCat(cat)
+        octopus.hideAdmin()
+
+
     },
     toggle: (event) => {
-        $('form#admin-form').toggleClass('visible');
-    }
+        $('form#admin-form').toggle();
+    },
+
 }
 
 var octopus = {
@@ -86,26 +98,24 @@ var octopus = {
     updateCard: (target) => {
         card_view.update(target);
     },
+    hideAdmin: ()=>{card_view.hideAdmin()},
     updateAdmin: (cat)=>{admin_view.initForm(cat)},
     incrementCatCount: (event) => {
         var counter = $(event.target).siblings('.cat-card_counter-text').children('span');
         var currentCount = parseInt($(counter).html());
         counter = utils.increment(counter, currentCount).toString();
         model.setCount(counter, event.data.cat.name)
+    },
+    updateCat: (mycat)=>{
+        model.setName(mycat.name)
+        model.setLink(mycat.src)
+        model.setCount(mycat.clickCount)
+        console.log("cat updated")
     }
+    
 }
 
 $(document).ready(() => {
-
-    // Render cat list to the sidebar
-
-    // $(".sidebar").html(utils.load_cat_list(cats));
-
-    // add click listeners to sidebar cat names to show each cat
-    // utils.add_cat_list_event_listeners(cats, $(".cat-list").find("li"));
-    // cats.forEach((x)=> $('.content').append(fn_make_cat_card(x)));
-
-    //GOAL
     octopus.init(cats);
 })
 

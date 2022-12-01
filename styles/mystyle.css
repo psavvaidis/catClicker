@@ -52,25 +52,21 @@ body {
     margin-top: 20px;
 }
 
-.admin-btn.show{
-    visibility: visible;
-}
-
-.admin-btn.hide{
-    visibility: hidden;
-}
-
 .admin form{
     display: flex;
     flex-direction: column;
-    visibility: hidden;
 }
 
-.admin form.visible{
-    visibility: visible;
-}
 .admin form input[type="text"]{
     margin-bottom: 10px;
+}
+
+.show{
+    visibility: visible;
+}
+
+.hide{
+    visibility: hidden;
 }
 
 .form-btns{

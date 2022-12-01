@@ -5,6 +5,14 @@ export const increment=(elem, current)=>{
     return current + 1
 }
 
+export const hide=(target)=>{
+    $(target).hide()
+}
+
+export  const show = (target)=> {
+    $(target).show()
+}
+
 export const make_cat_card = (cat) => {
     var card = document.createElement("div");
     var name_text = document.createElement("span");
