@@ -110,7 +110,7 @@ var octopus = {
         model.setName(mycat.name, mycat.name)
         model.setLink(mycat.src, mycat.name)
         model.setCount(mycat.clickCount, mycat.name)
-        console.log("cat updated")
+        utils.load_cat(mycat, $('.content'));
     }
     
 }
